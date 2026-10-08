@@ -29,10 +29,54 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             min-height: 100vh;
-            padding-bottom: 80px; /* Space for mobile bottom nav */
         }
 
-        /* Top Brand Header */
+        /* 1. Login Gate Layout (Matches Reference Site) */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-light);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px 24px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .login-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--navy-primary);
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+        .login-title span { color: var(--orange-primary); }
+
+        .login-card h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* Application Main Layout Wrapper */
+        #app-wrapper {
+            display: none; /* Hidden until authenticated */
+            padding-bottom: 80px;
+        }
+
         header {
             background-color: var(--navy-primary);
             color: var(--white);
@@ -50,9 +94,8 @@
         }
         .brand-logo span { color: var(--orange-primary); }
 
-        /* Main Layout Boundaries */
         .container {
-            max-width: 480px; /* Optimized exactly for iPhone 390px-430px up to Desktop */
+            max-width: 480px;
             margin: 0 auto;
             padding: 16px;
         }
@@ -64,12 +107,11 @@
             display: block;
         }
 
-        /* Typography Utilities */
         h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
         .subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
         .section-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; display: block;}
 
-        /* Metric Grid Components */
+        /* Metrics Display */
         .metrics-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -81,12 +123,11 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 14px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .metric-card .num { font-size: 20px; font-weight: 700; margin-top: 4px; }
         .metric-card .num.highlight { color: var(--orange-primary); }
 
-        /* Form Controls & Buttons */
+        /* Buttons & Forms */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -98,7 +139,6 @@
             font-weight: 700;
             border: none;
             cursor: pointer;
-            transition: background 0.15s;
             text-transform: uppercase;
             letter-spacing: 0.02em;
         }
@@ -107,8 +147,9 @@
         .btn-navy { background-color: var(--navy-primary); color: var(--white); }
         .btn-navy:active { background-color: #05101a; }
         .btn-secondary { background-color: transparent; border: 1px solid var(--border); color: var(--text-dark); }
+        .btn-danger { background-color: transparent; color: var(--error-red); border: 1px solid var(--error-red); padding: 6px 12px; font-size: 11px; border-radius: 4px; width: auto; text-transform: uppercase; font-weight: 700;}
 
-        /* Dynamic Service Matrix Selection */
+        /* Interactive Element Selection Grid */
         .service-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -133,9 +174,7 @@
             border-color: var(--orange-primary);
             background-color: rgba(244, 123, 32, 0.04);
         }
-        .service-card .icon { font-size: 20px; }
 
-        /* Measurement Inputs Block */
         .input-group {
             background: var(--white);
             border: 1px solid var(--border);
@@ -151,13 +190,27 @@
             padding: 12px;
             border: 1px solid var(--border);
             border-radius: 6px;
-            font-size: 16px; /* iOS safe zoom protection standard */
+            font-size: 16px;
             color: var(--text-dark);
             outline: none;
         }
-        .form-field input:focus { border-color: var(--navy-primary); }
 
-        /* Dynamic Visual Live Summary Output Panel */
+        /* Access Custom Checkbox */
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--bg-light);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+        .checkbox-row input { width: 20px; height: 20px; accent-color: var(--orange-primary); }
+
+        /* Calculation Pricing Output Layout Box */
         .price-output-box {
             background: var(--white);
             border: 1px solid var(--border);
@@ -165,17 +218,15 @@
             border-radius: 8px;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
         .price-output-box .price-lbl { font-size: 12px; font-weight: 800; color: var(--text-muted); letter-spacing: 0.05em; }
-        .price-output-box .price-val { font-size: 42px; font-weight: 900; color: var(--orange-primary); margin: 4px 0 16px 0; transition: transform 0.15s ease-in-out; }
-        .price-text-holder { display: block; }
+        .price-output-box .price-val { font-size: 42px; font-weight: 900; color: var(--orange-primary); margin: 4px 0 16px 0; }
         .price-breakdown { border-top: 1px dashed var(--border); padding-top: 12px; text-align: left; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text-muted); }
         .breakdown-row { display: flex; justify-content: space-between; }
         .breakdown-row.total-row { font-weight: 700; color: var(--text-dark); border-top: 1px solid var(--border); padding-top: 6px; margin-top: 4px; }
 
-        /* Polished Proposal Document Template View */
+        /* Document / Receipt Views */
         .proposal-paper {
             background: var(--white);
             border-radius: 4px;
@@ -188,406 +239,17 @@
         .proposal-logo { font-size: 16px; font-weight: 800; color: var(--navy-primary); }
         .proposal-logo span { color: var(--orange-primary); }
         .proposal-accent-line { height: 3px; background-color: var(--orange-primary); margin-bottom: 16px; }
+        
+        /* Banner Styles */
+        .doc-banner { padding: 10px; text-align: center; font-weight: 800; font-size: 14px; letter-spacing: 0.05em; border-radius: 4px; margin-bottom: 16px; display: none; }
+        .banner-proposal { background: #FEF3C7; color: #92400E; display: block; }
+        .banner-receipt { background: rgba(22, 163, 74, 0.15); color: var(--success-green); }
+
         .proposal-meta { font-size: 12px; color: var(--text-muted); display: flex; flex-direction: column; gap: 2px; margin-bottom: 20px; }
         .proposal-itemized { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         .proposal-itemized th { text-align: left; font-size: 11px; text-transform: uppercase; color: var(--text-muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); }
         .proposal-itemized td { padding: 10px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
         .proposal-total-banner { background: var(--bg-light); padding: 12px; border-left: 4px solid var(--orange-primary); display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
-        /* Toast Confirmation Modal Alert */
-        .toast-alert {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-100px);
-            background: var(--navy-primary);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
-            border-bottom: 2px solid var(--orange-primary);
-        }
-        .toast-alert.show { transform: translateX(-50%) translateY(0); }
-
-        /* Sticky Mobile Navigation Dock */
-        nav.mobile-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 64px;
-            background: var(--navy-primary);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 900;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .nav-item {
-            color: #94a3b8;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 600;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 25%;
-            height: 100%;
-            justify-content: center;
-        }
-        .nav-item.active { color: var(--orange-primary); }
-        .nav-item-icon { font-size: 18px; }
-    </style>
-</head>
-<body>
-
-    <!-- Notification Engine -->
-    <div id="toast" class="toast-alert">Prices Saved Successfully</div>
-
-    <!-- Application Top Bar Branding Header -->
-    <header>
-        <div class="brand-logo">WESTGROVE <span>SERVICES</span></div>
-        <div style="font-size: 12px; font-weight: 600; opacity: 0.8;">Portal v1.0</div>
-    </header>
-
-    <div class="container">
-        <section id="sec-dashboard" class="app-section active">
-            <h2>Good morning, Westgrove 👋</h2>
-            <p class="subtitle">Here is your operational snapshot for this month.</p>
-            
-            <div style="margin-bottom: 20px;">
-                <button class="btn btn-orange" onclick="switchTab('quote-calc')">+ New Quote</button>
-            </div>
-
-            <span class="section-label">Performance Indicators</span>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="subtitle" style="margin:0;">Quotes Issued</div>
-                    <div class="num">24</div>
-                </div>
-                <div class="metric-card">
-                    <div class="subtitle" style="margin:0;">Revenue Quoted</div>
-                    <div class="num highlight">$8,450</div>
-                </div>
-                <div class="metric-card">
-                    <div class="subtitle" style="margin:0;">Jobs Won</div>
-                    <div class="num">18</div>
-                </div>
-                <div class="metric-card">
-                    <div class="subtitle" style="margin:0;">Est. Gross Profit</div>
-                    <div class="num highlight">$5,120</div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="sec-quote-calc" class="app-section">
-            <h2>Create New Quote</h2>
-            <p class="subtitle">Select core service and configure job specifications details.</p>
-
-            <span class="section-label">1. Select Field Service Type</span>
-            <div class="service-grid">
-                <div class="service-card selected" id="srv-lawn" onclick="selectService('lawn')">
-                    <span class="icon">🌿</span>
-                    <span>Lawn Care</span>
-                </div>
-                <div class="service-card" id="srv-window" onclick="selectService('window')">
-                    <span class="icon">🪟</span>
-                    <span>Windows</span>
-                </div>
-                <div class="service-card" id="srv-gutter" onclick="selectService('gutter')">
-                    <span class="icon">🪵</span>
-                    <span>Gutters</span>
-                </div>
-                <div class="service-card" id="srv-junk" onclick="selectService('junk')">
-                    <span class="icon">🚛</span>
-                    <span>Junk Removal</span>
-                </div>
-            </div>
-
-            <span class="section-label">2. Job Parameters</span>
-            <div class="input-group">
-                <div class="form-field">
-                    <label id="lbl-measurement">Property Size (Sq Ft)</label>
-                    <input type="number" pattern="[0-9]*" inputmode="numeric" id="input-qty" value="2000" oninput="runCalculations()">
-                </div>
-                <div class="form-field">
-                    <label for="select-difficulty">Complexity Level Modifier</label>
-                    <select id="select-difficulty" onchange="runCalculations()">
-                        <option value="1.0">Standard Configuration (1.0x)</option>
-                        <option value="1.25">Elevated Complexity (1.25x)</option>
-                        <option value="1.5">Maximum Difficulty (1.5x)</option>
-                    </select>
-                </div>
-            </div>
-
-            <span class="section-label">3. Financial Estimate Matrix</span>
-            <div class="price-output-box">
-                <div class="price-lbl">YOUR PRICE</div>
-                <div class="price-val" id="calc-grand-total">$0</div>
-                
-                <div class="price-breakdown">
-                    <div class="breakdown-row">
-                        <span>Base Production Cost:</span>
-                        <span id="bd-base">$0.00</span>
-                    </div>
-                    <div class="breakdown-row">
-                        <span>Complexity Surcharge:</span>
-                        <span id="bd-addons">$0.00</span>
-                    </div>
-                    <div class="breakdown-row">
-                        <span>Dispatched Logistics/Travel Fee:</span>
-                        <span id="bd-travel">$25.00</span>
-                    </div>
-                    <div class="breakdown-row total-row">
-                        <span>Total Projected Estimate:</span>
-                        <span id="bd-total">$0.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn btn-orange" style="margin-bottom:12px;" onclick="renderPreviewData(); switchTab('preview');">Generate & View Proposal Document</button>
-        </section>
-
-
-        <section id="sec-preview" class="app-section">
-            <h2>Customer Proposal Document</h2>
-            <p class="subtitle">Polished layout view of how the document presents directly to the client.</p>
-
-            <div class="proposal-paper">
-                <div class="proposal-header">
-                    <div class="proposal-logo">WESTGROVE <span>SERVICES</span></div>
-                    <div style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700;">Service Proposal</div>
-                </div>
-                <div class="proposal-accent-line"></div>
-                
-                <div class="proposal-meta">
-                    <div><strong>Prepared For:</strong> Field Client Reference Case</div>
-                    <div><strong>Date Issued:</strong> October 7, 2026</div>
-                    <div><strong>Project Status:</strong> Pending Document Authorization</div>
-                </div>
-
-                <table class="proposal-itemized">
-                    <thead>
-                        <tr>
-                            <th>Proposed Solution Line Item</th>
-                            <th style="text-align: right;">Total Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span id="prop-display-name">Service Package Deployment</span><br><span style="font-size:12px; color:var(--text-muted);">Configured Operational Field Tasks</span></td>
-                            <td style="text-align: right; font-weight:600;" id="prop-subtotal">$0.00</td>
-                        </tr>
-                        <tr>
-                            <td>Dispatched Logistics & Material Travel Fee</td>
-                            <td style="text-align: right; font-weight:600;">$25.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="proposal-total-banner">
-                    <span style="font-size:12px; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Binding Price Quote</span>
-                    <span style="font-size:24px; font-weight:900; color:var(--navy-primary);" id="prop-final-price">$0.00</span>
-                </div>
-
-                <div style="font-size:11px; color:var(--text-muted); line-height:1.4; margin-bottom:12px;">
-                    <strong>Terms & Agreements:</strong> This structural financial estimate remains valid for 30 calendar days from creation date. Field execution windows remain subject to environmental conditions.
-                </div>
-            </div>
-
-            <div style="display:flex; gap:10px;">
-                <button class="btn btn-navy" style="width:35%;" onclick="switchTab('quote-calc')">Modify Data</button>
-                <button class="btn btn-orange" style="width:65%;" onclick="triggerToast('Proposal Dispatched to Client Account')">Send Quote</button>
-            </div>
-        </section>
-
-
-        <section id="sec-settings" class="app-section">
-            <h2 style="color:var(--navy-primary);">System Pricing Benchmarks</h2>
-            <p class="subtitle">Modify the live base calculation matrix constraints utilized by your field staff.</p>
-
-            <span class="section-label">Rate Base Configuration Variables</span>
-            <div class="input-group">
-                <div class="form-field">
-                    <label>Lawn Care Rate (Per Sq Ft Base)</label>
-                    <input type="number" step="0.01" id="cfg-lawn" value="0.08">
-                </div>
-                <div class="form-field">
-                    <label>Window Cleaning Base Rate (Per Window Pane)</label>
-                    <input type="number" step="1" id="cfg-window" value="12">
-                </div>
-                <div class="form-field">
-                    <label>Gutter Cleaning Rate (Per Linear Foot)</label>
-                    <input type="number" step="0.10" id="cfg-gutter" value="3.50">
-                </div>
-                <div class="form-field">
-                    <label>Junk Removal Rate (Per Truckload Fraction Volume)</label>
-                    <input type="number" step="5" id="cfg-junk" value="95">
-                </div>
-            </div>
-
-            <button class="btn btn-orange" onclick="savePricingMatrixSettings()">Save Configuration Constants</button>
-        </section>
-    </div>
-
-    <nav class="mobile-nav">
-        <button class="nav-item active" id="nav-dashboard" onclick="switchTab('dashboard')">
-            <span class="nav-item-icon">📊</span>
-            <span>Dashboard</span>
-        </button>
-        <button class="nav-item" id="nav-quote-calc" onclick="switchTab('quote-calc')">
-            <span class="nav-item-icon">🧮</span>
-            <span>New Quote</span>
-        </button>
-        <button class="nav-item" id="nav-preview" onclick="switchTab('preview')">
-            <span class="nav-item-icon">📄</span>
-            <span>Preview</span>
-        </button>
-        <button class="nav-item" id="nav-settings" onclick="switchTab('settings')">
-            <span class="nav-item-icon">⚙️</span>
-            <span>Settings</span>
-        </button>
-    </nav>
-
-    <script>
-        // System Application Context State Stores
-        let activeServiceTypeKey = 'lawn';
-        
-        // Base Variable Constants Dictionary Storage Defaults
-        let priceEngineMatrix = {
-            lawn: 0.08,
-            window: 12.00,
-            gutter: 3.50,
-            junk: 95.00
-        };
-
-        // Navigation Tab Panel Dispatcher Management Module
-        function switchTab(targetSectionKey) {
-            // Unset current active component flags
-            document.querySelectorAll('.app-section').forEach(section => section.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(navBtn => navBtn.classList.remove('active'));
-
-            // Engage explicit target views
-            document.getElementById(`sec-${targetSectionKey}`).classList.add('active');
-            document.getElementById(`nav-${targetSectionKey}`).classList.add('active');
-            
-            // Re-render calculations dynamically inside focus targets
-            if(targetSectionKey === 'quote-calc') {
-                runCalculations();
-            }
-            
-            // Force viewport positioning reset
-            window.scrollTo(0,0);
-        }
-
-        // Active Service Matrix Selection Driver State Mechanics
-        function selectService(serviceKey) {
-            document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
-            activeServiceTypeKey = serviceKey;
-            
-            const cardEl = document.getElementById(`srv-${serviceKey}`);
-            if(cardEl) cardEl.classList.add('selected');
-
-            // Adapt input UI messaging labels based on operational domain contexts
-            const labelEl = document.getElementById('lbl-measurement');
-            const qtyInputEl = document.getElementById('input-qty');
-            
-            if(serviceKey === 'lawn') {
-                labelEl.innerText = "Property Size Area (Sq Ft Requirement)";
-                qtyInputEl.value = "2000";
-            } else if(serviceKey === 'window') {
-                labelEl.innerText = "Target Window Pane Configuration Count";
-                qtyInputEl.value = "15";
-            } else if(serviceKey === 'gutter') {
-                labelEl.innerText = "Total Linear Roof Gutter Footing Count";
-                qtyInputEl.value = "120";
-            } else if(serviceKey === 'junk') {
-                labelEl.innerText = "Estimated Quarter-Truckload Allocation Index (1-4)";
-                qtyInputEl.value = "2";
-            }
-
-            runCalculations();
-        }
-
-        // Live Calculation Computation Processing Engine Function
-        function runCalculations() {
-            const currentUnitsQty = parseFloat(document.getElementById('input-qty').value) || 0;
-            const chosenDifficultyFactor = parseFloat(document.getElementById('select-difficulty').value) || 1.0;
-            const currentSelectedBaseUnitCostMetric = priceEngineMatrix[activeServiceTypeKey];
-
-            // Primary Calculations
-            const calculationBaseOutput = currentUnitsQty * currentSelectedBaseUnitCostMetric;
-            const modificationComplexitySurchargeAmount = calculationBaseOutput * (chosenDifficultyFactor - 1);
-            const standardFixedLogisticsTravelFee = 25.00;
-            
-            const compiledAbsoluteGrandTotal = calculationBaseOutput + modificationComplexitySurchargeAmount + standardFixedLogisticsTravelFee;
-
-            // Interface Visual Update Pipeline Render
-            const valDisplayEl = document.getElementById('calc-grand-total');
-            
-            // Subtle visual scaling alert animation hook trigger sequence
-            valDisplayEl.style.transform = "scale(1.08)";
-            setTimeout(() => { valDisplayEl.style.transform = "scale(1.0)"; }, 120);
-
-            valDisplayEl.innerText = '$' + Math.round(compiledAbsoluteGrandTotal);
-            document.getElementById('bd-base').innerText = '$' + calculationBaseOutput.toFixed(2);
-            document.getElementById('bd-addons').innerText = '$' + modificationComplexitySurchargeAmount.toFixed(2);
-            document.getElementById('bd-travel').innerText = '$' + standardFixedLogisticsTravelFee.toFixed(2);
-            document.getElementById('bd-total').innerText = '$' + compiledAbsoluteGrandTotal.toFixed(2);
-        }
-
-        // Mapping Layer Pipeline to Output Presentation Framework Document
-        function renderPreviewData() {
-            const prettyNamesMap = {
-                lawn: "Professional Lawn Care & Turf Management Deployment",
-                window: "Premium Window Cleansing & Treatment Solution Suite",
-                gutter: "Comprehensive Gutter Clearance & Downspout Maintenance",
-                junk: "High-Volume Structural Junk Removal & Logistics Dispatched"
-            };
-
-            const currentUnitsQty = parseFloat(document.getElementById('input-qty').value) || 0;
-            const chosenDifficultyFactor = parseFloat(document.getElementById('select-difficulty').value) || 1.0;
-            const currentSelectedBaseUnitCostMetric = priceEngineMatrix[activeServiceTypeKey];
-
-            const baseCost = currentUnitsQty * currentSelectedBaseUnitCostMetric * chosenDifficultyFactor;
-            const finalComputedTotal = baseCost + 25.00;
-
-            document.getElementById('prop-display-name').innerText = prettyNamesMap[activeServiceTypeKey];
-            document.getElementById('prop-subtotal').innerText = '$' + baseCost.toFixed(2);
-            document.getElementById('prop-final-price').innerText = '$' + finalComputedTotal.toFixed(2);
-        }
-
-        // Global User-Facing Notification Action Alerts
-        function triggerToast(messageContentString) {
-            const alertEl = document.getElementById('toast');
-            alertEl.innerText = messageContentString;
-            alertEl.classList.add('show');
-            setTimeout(() => { alertEl.classList.remove('show'); }, 2500);
-        }
-
-        // Settings Parameter Management Framework Execution Rules
-        function savePricingMatrixSettings() {
-            priceEngineMatrix.lawn = parseFloat(document.getElementById('cfg-lawn').value) || 0.08;
-            priceEngineMatrix.window = parseFloat(document.getElementById('cfg-window').value) || 12;
-            priceEngineMatrix.gutter = parseFloat(document.getElementById('cfg-gutter').value) || 3.50;
-            priceEngineMatrix.junk = parseFloat(document.getElementById('cfg-junk').value) || 95;
-
-            triggerToast("Global Price Constants Saved Successfully");
-        }
-
-        // Initialize Runtime Process Stream Hook
-        window.onload = function() {
-            runCalculations();
-        };
-    </script>
-</body>
-</html>
+        /* Signature Workspace */
+        .signature-box { border: 1px dashed var(--text-muted); background: var(--bg-light); border-radius: 6px; margin-bottom: 16px; position: relative;}
